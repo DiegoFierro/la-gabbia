@@ -1,0 +1,84 @@
+{{- $siteTitle := site.Title -}}
+{{- $thin := and (eq .Kind "term") (lt (len .Pages) 2) -}}
+
+{{- /* Título (≈ 60 caracteres) */ -}}
+{{- $title := printf "%s | %s" .Title $siteTitle -}}
+{{- if .IsHome -}}
+  {{- $title = printf "%s – %s" $siteTitle site.Params.description -}}
+{{- else if eq .Kind "term" -}}
+  {{- $title = printf "Etiqueta: %s | %s" .Title $siteTitle -}}
+{{- else if eq .Kind "404" -}}
+  {{- $title = printf "Página no encontrada | %s" $siteTitle -}}
+{{- end -}}
+
+{{- /* Descripción (≈ 155 caracteres) */ -}}
+{{- $desc := site.Params.description -}}
+{{- if .Description -}}
+  {{- $desc = .Description -}}
+{{- else if .IsHome -}}
+  {{- $desc = site.Params.longDescription -}}
+{{- else if eq .Kind "term" -}}
+  {{- $desc = printf "Entradas de %s etiquetadas con «%s»." $siteTitle .Title -}}
+{{- else if .IsPage -}}
+  {{- $desc = .Summary | plainify | htmlUnescape | truncate 155 -}}
+{{- end -}}
+{{- $desc = $desc | plainify | htmlUnescape | chomp -}}
+
+{{- /* Imagen para redes */ -}}
+{{- $img := "og-default.png" | absURL -}}
+{{- $ownImg := false -}}
+{{- with .Params.image -}}
+  {{- $ownImg = true -}}
+  {{- if hasPrefix . "http" }}{{ $img = . }}{{ else }}{{ $img = . | absURL }}{{ end -}}
+{{- end -}}
+
+{{- $isPost := and .IsPage (eq .Type "posts") -}}
+{{- $robots := "index, follow, max-image-preview:large, max-snippet:-1" -}}
+{{- if or $thin (eq .Kind "404") -}}{{- $robots = "noindex, follow" -}}{{- end }}
+
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<meta name="robots" content="{{ $robots }}">
+<meta name="author" content="{{ site.Params.author }}">
+{{ if not (eq .Kind "404") }}<link rel="canonical" href="{{ .Permalink }}">{{ end }}
+
+<meta property="og:site_name" content="{{ $siteTitle }}">
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="{{ if $isPost }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ $siteTitle }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $img }}">
+{{ if not $ownImg }}<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ $siteTitle }} – {{ site.Params.description }}">{{ end }}
+{{ if $isPost }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{ range .GetTerms "tags" }}<meta property="article:tag" content="{{ .LinkTitle }}">
+{{ end }}{{ end }}
+<meta name="twitter:card" content="{{ if $ownImg }}summary{{ else }}summary_large_image{{ end }}">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ $siteTitle }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $img }}">
+{{ with site.Params.twitter }}<meta name="twitter:site" content="@{{ . }}">{{ end }}
+
+{{- /* Datos estructurados (JSON-LD) */ -}}
+{{- $publisher := dict "@type" "Organization" "name" $siteTitle "url" site.Home.Permalink "logo" (dict "@type" "ImageObject" "url" ("icon-512.png" | absURL)) -}}
+{{- if .IsHome }}
+{{- $ld := dict "@context" "https://schema.org" "@type" "WebSite" "name" $siteTitle "alternateName" site.Params.description "description" $desc "url" site.Home.Permalink "inLanguage" "es" "publisher" $publisher }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end }}
+{{- if $isPost }}
+{{- $kw := slice }}{{ range .GetTerms "tags" }}{{ $kw = $kw | append .LinkTitle }}{{ end }}
+{{- $ld := dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" .Title "description" $desc "image" (slice $img) "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00") "inLanguage" "es" "wordCount" .WordCount "keywords" (delimit $kw ", ") "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) "author" (dict "@type" "Organization" "name" site.Params.author "url" site.Home.Permalink) "publisher" $publisher }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end }}
+{{- if not .IsHome }}
+{{- $crumbs := slice }}
+{{- range $i, $it := partial "breadcrumb-items.html" . }}{{ $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add $i 1) "name" $it.name "item" $it.url) }}{{ end }}
+{{- if gt (len $crumbs) 1 }}
+{{- $bc := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $crumbs }}
+<script type="application/ld+json">{{ $bc | jsonify | safeJS }}</script>
+{{- end }}
+{{- end }}

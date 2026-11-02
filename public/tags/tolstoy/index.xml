@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Tolstoy on La Gabbia</title>
+		<link>http://localhost:1313/tags/tolstoy/</link>
+		<description>Recent content in Tolstoy on La Gabbia</description>
+		<generator>Hugo</generator>
+		<language>es-ES</language>
+		
+		
+		
+		
+			<lastBuildDate>Thu, 22 Apr 2021 12:00:00 -0300</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/tolstoy/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Lo leone et lo canetto</title>
+				<link>http://localhost:1313/posts/lo-leone-et-lo-canetto/</link>
+				<pubDate>Thu, 22 Apr 2021 12:00:00 -0300</pubDate>
+				<guid>http://localhost:1313/posts/lo-leone-et-lo-canetto/</guid>
+				<description>&lt;p&gt;&lt;strong&gt;Per Lev Tolstoy&lt;/strong&gt;&lt;br&gt;&#xA;&lt;em&gt;(Traducción propia)&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;En uno parche en Londres mostravan fieras salvagges, cobrando por ello denario aut prendèndo como pagamènto canes et cattos que servevan de alimènto ad las fieras.&lt;/p&gt;&#xA;&lt;p&gt;Uno hòmene que voleu vedere cuessa exhibitione prendeu uno canetto en la ruga et lo portau ad lo parche. Lo laxaron passare, et jectaron lo animaletto ad lo leone por que lo mangîasse.&lt;/p&gt;&#xA;&lt;p&gt;Lo canetto se contrageu en uno àngolo de la cabbia con la cauda entre las pèrnas. Lo leone se approximau ad elle et lo olfaceu. Lo cane se extendeu de dòrso, levau las patettas et agitau la cauda. Lo leone le dau la vòlta con una patta. Lo canetto se levau et se altsau ante lo leone. Cueste mirau lo cane, tornau la testa ad uno lato et ad otro et non toccau lo cane. Cuando lo dòmno de las ferias jectau carne ad lo leone, cueste extrageu uno fragmènto et laxau lo resto ad lo canetto.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

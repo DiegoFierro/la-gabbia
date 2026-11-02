@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="header-inner container">
+    <a class="site-title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+    <nav class="site-nav" aria-label="Principal">
+      {{ $current := . }}
+      {{ range .Site.Menus.main }}
+        {{ $url := .URL | relURL }}
+        {{ $active := false }}
+        {{ if eq $url "/" }}{{ $active = $current.IsHome }}{{ else }}{{ $active = hasPrefix $current.RelPermalink $url }}{{ end }}
+        <a href="{{ $url }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{ end }}
+      <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Cambiar modo claro/oscuro">
+        <span id="theme-icon" aria-hidden="true">🌙</span>
+      </button>
+    </nav>
+  </div>
+  {{ if and .IsPage (eq .Type "posts") }}<div class="reading-progress" id="reading-progress" aria-hidden="true"></div>{{ end }}
+</header>

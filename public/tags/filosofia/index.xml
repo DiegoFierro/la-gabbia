@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Filosofia on La Gabbia</title>
+		<link>http://localhost:1313/tags/filosofia/</link>
+		<description>Recent content in Filosofia on La Gabbia</description>
+		<generator>Hugo</generator>
+		<language>es-ES</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 15 Feb 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/filosofia/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Reflexiones desde la jaula</title>
+				<link>http://localhost:1313/posts/primer-ensayo/</link>
+				<pubDate>Sun, 15 Feb 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/primer-ensayo/</guid>
+				<description>&lt;p&gt;La jaula no solo encierra; define los límites desde los cuales contemplamos el horizonte. En la tradición neolatina, la palabra cobra una textura distinta cuando se enfrenta al silencio contemporáneo.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&amp;ldquo;Verba volant, scripta manent.&amp;rdquo;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Este blog busca ser un refugio de textos, fragmentos y ejercicios de pensamiento que trascienden el ruido cotidiano.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

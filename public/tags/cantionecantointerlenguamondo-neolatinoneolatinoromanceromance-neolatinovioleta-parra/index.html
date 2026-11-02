@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantione,canto,interlengua,mondo Neolatino,neolatino,romance,romance Neolatino,Violeta Parra | La Gabbia</title>
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+  <div class="header-inner container">
+    <a class="site-title" href="/">La Gabbia</a>
+    <nav class="site-nav">
+      
+        <a href="/">Inicio</a>
+      
+        <a href="/posts/">Archivo</a>
+      
+        <a href="/about/">Sobre el sitio</a>
+      
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar modo claro/oscuro">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+    <main class="container">
+        
+<section class="page-content">
+  <h1 class="page-title">Cantione,canto,interlengua,mondo Neolatino,neolatino,romance,romance Neolatino,Violeta Parra</h1>
+  
+  <ul class="post-list">
+    
+      <li class="post-item">
+        
+          <div class="post-thumb">
+            <a href="/posts/gratias-ad-la-vita/">
+              <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjpGe1hsXpyMPUZIpr_awh80Ezid0quv55C2pUNiCQ8T2tDt5sHgpdZ6Yu1chROBrBhO2KxA8geruvda2EQ24-VKQIOdNVXgBzxJYLFhrPgOksYn304LIKQEgaEtWfT3KwFDzB-FhjHhKnx/s320/e7a9a247-a8f4-4f41-83b6-bd33b522a8fc.jpg" alt="Gratias ad la vita">
+            </a>
+          </div>
+        
+        
+        <div class="post-info">
+          <span class="post-date">29 de Enero, 2021</span>
+          <h2 class="post-title-heading">
+            <a class="post-link" href="/posts/gratias-ad-la-vita/">Gratias ad la vita</a>
+          </h2>
+          
+            <p class="post-summary">Versión en neolatina del clásico canto de agradecimiento a la vida.</p>
+          
+        </div>
+      </li>
+    
+  </ul>
+</section>
+
+    </main>
+    <footer class="site-footer">
+  <div class="container footer-content">
+    <p>&copy; 2026 La Gabbia. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  const html = document.documentElement;
+
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  if (savedTheme === 'light') {
+    html.classList.add('light-theme');
+    icon.textContent = '☀️';
+  } else {
+    icon.textContent = '🌙';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    html.classList.toggle('light-theme');
+    const isLight = html.classList.contains('light-theme');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    icon.textContent = isLight ? '☀️' : '🌙';
+  });
+</script>
+
+</body>
+</html>

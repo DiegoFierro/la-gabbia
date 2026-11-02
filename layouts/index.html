@@ -1,0 +1,41 @@
+{{ define "main" }}
+{{ $posts := (where .Site.RegularPages "Type" "posts").ByDate.Reverse }}
+<section class="hero-section">
+  <h1 class="hero-title">{{ .Site.Title }}</h1>
+  <p class="hero-subtitle">{{ .Site.Params.description }}</p>
+</section>
+
+{{ with index $posts 0 }}
+<section class="latest" aria-labelledby="ultima">
+  <h2 class="section-heading" id="ultima">Última entrata</h2>
+  <ul class="post-list">
+    {{ partial "post-item.html" (dict "page" . "featured" true) }}
+  </ul>
+</section>
+{{ end }}
+
+{{ $rest := after 1 $posts }}
+{{ if $rest }}
+<section class="recent-posts" aria-labelledby="anteriores">
+  <h2 class="section-heading" id="anteriores">Entratas anteriores</h2>
+  <ul class="post-list">
+    {{ range first 6 $rest }}
+      {{ partial "post-item.html" (dict "page" . "featured" false) }}
+    {{ end }}
+  </ul>
+  <p class="see-all"><a class="btn-link" href="{{ "posts/" | relLangURL }}">Vedere toto lo archivo ({{ len $posts }} entratas) →</a></p>
+</section>
+{{ end }}
+
+{{ with .Site.Taxonomies.tags }}
+<section class="topics" aria-labelledby="temas">
+  <h2 class="section-heading" id="temas">Explorare per tèma</h2>
+  <ul class="tag-cloud">
+    {{ range first 12 .ByCount }}
+      <li><a href="{{ .Page.RelPermalink }}">#{{ .Page.LinkTitle }} <span class="tag-count">{{ .Count }}</span></a></li>
+    {{ end }}
+  </ul>
+  <p class="see-all"><a class="btn-link" href="{{ "tags/" | relLangURL }}">Totas las etichettas →</a></p>
+</section>
+{{ end }}
+{{ end }}

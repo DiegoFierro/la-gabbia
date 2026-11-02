@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section class="page-content">
+  {{ partial "breadcrumb.html" . }}
+  <h1 class="page-title">{{ if eq .Kind "term" }}Etichetta: #{{ end }}{{ .Title }}</h1>
+  {{ with .Content }}<div class="post-content">{{ . }}</div>{{ end }}
+
+  {{ if eq .Kind "section" }}
+    <div class="archive-tools">
+      <label class="visually-hidden" for="archive-filter">Cercare en lo archivo</label>
+      <input id="archive-filter" class="search-input" type="search" placeholder="Cercare per títolo, tèma aut etichetta…" autocomplete="off" enterkeyhint="search">
+      <p id="archive-count" class="archive-count" aria-live="polite"></p>
+    </div>
+    {{ range .Pages.GroupByDate "2006" }}
+      <section class="year-group" aria-labelledby="y{{ .Key }}">
+        <h2 class="year-heading" id="y{{ .Key }}">{{ .Key }}</h2>
+        <ul class="post-list">
+          {{ range .Pages }}{{ partial "post-item.html" (dict "page" . "featured" false) }}{{ end }}
+        </ul>
+      </section>
+    {{ end }}
+  {{ else }}
+    <p class="archive-count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}entrata{{ else }}entratas{{ end }}</p>
+    <ul class="post-list">
+      {{ range .Pages.ByDate.Reverse }}{{ partial "post-item.html" (dict "page" . "featured" false) }}{{ end }}
+    </ul>
+    <p class="see-all"><a class="btn-link" href="{{ "tags/" | relLangURL }}">← Totas las etichettas</a></p>
+  {{ end }}
+</section>
+{{ end }}

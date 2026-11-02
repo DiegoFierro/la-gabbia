@@ -1,0 +1,12 @@
+{{- /* Devuelve la ruta de migas de pan como lista de {name, url} */ -}}
+{{- $items := slice -}}
+{{- if not .IsHome -}}
+  {{- $items = $items | append (dict "name" "Initio" "url" site.Home.Permalink) -}}
+  {{- range .Ancestors.Reverse -}}
+    {{- if not .IsHome -}}
+      {{- $items = $items | append (dict "name" .LinkTitle "url" .Permalink) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $items = $items | append (dict "name" .LinkTitle "url" .Permalink) -}}
+{{- end -}}
+{{- return $items -}}

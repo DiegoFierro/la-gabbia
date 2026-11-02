@@ -1,0 +1,95 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+        <p>{{ .Site.Params.description }}</p>
+      </div>
+      <nav class="footer-links" aria-label="Pie de página">
+        {{ range .Site.Menus.main }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}
+        <a href="{{ "index.xml" | relURL }}">RSS</a>
+      </nav>
+    </div>
+    <p class="footer-credit">&copy; {{ now.Format "2006" }} {{ .Site.Title }}. Creato per <a href="https://diegofierro.github.io/" target="_blank" rel="noopener noreferrer">Diego Fierro</a>.</p>
+  </div>
+</footer>
+
+<button id="to-top" class="to-top" type="button" aria-label="Volver arriba" hidden>↑</button>
+
+<script>
+  (function () {
+    var html = document.documentElement;
+
+    /* Tema claro / oscuro */
+    var btn = document.getElementById('theme-toggle');
+    var icon = document.getElementById('theme-icon');
+    function paint() {
+      if (!btn || !icon) return;
+      var light = html.classList.contains('light-theme');
+      icon.textContent = light ? '☀️' : '🌙';
+      btn.setAttribute('aria-pressed', light ? 'true' : 'false');
+    }
+    paint();
+    if (btn) btn.addEventListener('click', function () {
+      html.classList.toggle('light-theme');
+      try { localStorage.setItem('theme', html.classList.contains('light-theme') ? 'light' : 'dark'); } catch (e) {}
+      paint();
+    });
+
+    /* Barra de progreso de lectura + botón "volver arriba" */
+    var bar = document.getElementById('reading-progress');
+    var top = document.getElementById('to-top');
+    var ticking = false;
+    function onScroll() {
+      var y = window.pageYOffset || html.scrollTop;
+      if (bar) {
+        var max = html.scrollHeight - window.innerHeight;
+        bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+      }
+      if (top) top.hidden = y < 700;
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+    if (top) top.addEventListener('click', function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    /* Buscador del archivo */
+    var input = document.getElementById('archive-filter');
+    if (input) {
+      var items = [].slice.call(document.querySelectorAll('.post-item'));
+      var groups = [].slice.call(document.querySelectorAll('.year-group'));
+      var count = document.getElementById('archive-count');
+      var total = items.length;
+      var norm = function (s) {
+        return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      };
+      var filter = function () {
+        var q = norm(input.value).trim().split(/\s+/).filter(Boolean);
+        var shown = 0;
+        items.forEach(function (li) {
+          var hay = norm(li.getAttribute('data-search'));
+          var ok = q.every(function (w) { return hay.indexOf(w) !== -1; });
+          li.hidden = !ok;
+          if (ok) shown++;
+        });
+        groups.forEach(function (g) {
+          g.hidden = !g.querySelector('.post-item:not([hidden])');
+        });
+        if (count) {
+          count.textContent = q.length
+            ? (shown ? shown + (shown === 1 ? ' entrata tropata' : ' entratas tropatas')
+                     : 'Non hi ha entratas por «' + input.value.trim() + '». Prova con altra paraula aut explora las etichettas.')
+            : total + (total === 1 ? ' entrata' : ' entratas');
+        }
+      };
+      input.addEventListener('input', filter);
+      filter();
+    }
+  })();
+</script>

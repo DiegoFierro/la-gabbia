@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="page-content not-found">
+  <h1 class="page-title">Pàgina non tropataa</h1>
+  <p>La directione que cercas non exsiste aut fue movuta. Prova con una de las últimas entratas:</p>
+  <ul class="post-list">
+    {{ range first 4 (where .Site.RegularPages "Type" "posts").ByDate.Reverse }}
+      {{ partial "post-item.html" (dict "page" . "featured" false) }}
+    {{ end }}
+  </ul>
+  <p class="see-all"><a class="btn-link" href="{{ "/" | relURL }}">← Retornare ad lo initio</a></p>
+</section>
+{{ end }}

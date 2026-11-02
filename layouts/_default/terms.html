@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="page-content">
+  {{ partial "breadcrumb.html" . }}
+  <h1 class="page-title">{{ .Title }}</h1>
+  <p class="archive-count">Elige un tema para ver sus entradas.</p>
+  <ul class="tag-cloud">
+    {{ range .Data.Terms.Alphabetical }}
+      <li><a href="{{ .Page.RelPermalink }}">#{{ .Page.LinkTitle }} <span class="tag-count">{{ .Count }}</span></a></li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

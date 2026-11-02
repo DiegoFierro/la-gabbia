@@ -1,0 +1,52 @@
+baseURL: "https://ejemplo.org/"   # <- cámbiala por tu dominio real antes de publicar (afecta canonical, sitemap y redes)
+title: "La Gabbia"
+
+defaultContentLanguage: "es"
+locale: "es-ES"
+timeZone: "America/Argentina/Buenos_Aires"
+
+enableRobotsTXT: true
+summaryLength: 40
+
+params:
+  description: "Neolatina / Reflèxos et essaggîos"
+  longDescription: "La Gabbia: traductiones ad lo neolatino, poèmas, còntos et essaggîos sopre lenguas et cultura neolatina."
+  defaultTheme: "dark"
+  author: "La Gabbia"
+  # Twitter/X (opcional): twitter: "tu_usuario"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+taxonomies:
+  tag: "tags"
+
+# Entradas relacionadas (enlazado interno)
+related:
+  includeNewer: true
+  threshold: 50
+  toLower: true
+  indices:
+    - name: tags
+      weight: 100
+
+outputs:
+  home: ["HTML", "RSS"]
+  section: ["HTML", "RSS"]
+
+menu:
+  main:
+    - name: "Initio"
+      url: "/"
+      weight: 10
+    - name: "Archivo"
+      url: "/posts/"
+      weight: 20
+    - name: "Etichettas"
+      url: "/tags/"
+      weight: 25
+    - name: "Sopre lo sito"
+      url: "/about/"
+      weight: 30

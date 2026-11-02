@@ -1,0 +1,14 @@
+{{- $items := partial "breadcrumb-items.html" . -}}
+{{- if gt (len $items) 1 }}
+<nav class="breadcrumb" aria-label="Ruta de navegación">
+  <ol>
+    {{- range $i, $it := $items }}
+      {{- if eq (add $i 1) (len $items) }}
+      <li aria-current="page">{{ $it.name }}</li>
+      {{- else }}
+      <li><a href="{{ $it.url }}">{{ $it.name }}</a></li>
+      {{- end }}
+    {{- end }}
+  </ol>
+</nav>
+{{- end }}

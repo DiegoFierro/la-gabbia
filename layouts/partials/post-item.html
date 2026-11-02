@@ -1,0 +1,25 @@
+{{- /* Parámetros: page (la entrada) y featured (true/false) */ -}}
+{{- $p := .page -}}
+{{- $featured := .featured | default false -}}
+<li class="post-item{{ if $featured }} post-item--featured{{ end }}" data-search="{{ printf "%s %s %s" $p.Title $p.Description (delimit $p.Params.tags " ") | lower }}">
+  <a class="post-thumb" href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true">
+    {{ with $p.Params.image }}
+      <img src="{{ . }}" alt="" {{ if not $featured }}loading="lazy" {{ end }}decoding="async" width="{{ if $featured }}240{{ else }}140{{ end }}" height="{{ if $featured }}160{{ else }}95{{ end }}">
+    {{ else }}
+      <span class="post-thumb-initial">{{ substr $p.Title 0 1 }}</span>
+    {{ end }}
+  </a>
+  <div class="post-info">
+    <div class="post-date-row">
+      <time class="post-date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ partial "date.html" $p.Date }}</time>
+    </div>
+    <h2 class="post-title-heading">
+      <a class="post-link" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+    </h2>
+    {{ with $p.Params.description }}
+      <p class="post-summary">{{ . }}</p>
+    {{ else }}
+      <p class="post-summary">{{ $p.Summary | plainify | truncate 140 }}</p>
+    {{ end }}
+  </div>
+</li>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filosofia | La Gabbia</title>
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+  <div class="header-inner container">
+    <a class="site-title" href="/">La Gabbia</a>
+    <nav class="site-nav">
+      
+        <a href="/">Inicio</a>
+      
+        <a href="/posts/">Archivo</a>
+      
+        <a href="/about/">Sobre el sitio</a>
+      
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar modo claro/oscuro">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+    <main class="container">
+        
+<section class="page-content">
+  <h1 class="page-title">Filosofia</h1>
+  
+  <ul class="post-list">
+    
+      <li class="post-item">
+        <span class="post-date">15 de Enero, 2026</span>
+        <a class="post-link" href="/posts/primer-ensayo/">Reflexiones desde la jaula</a>
+        
+          <p class="post-summary">Una primera mirada hacia el simbolismo y la memoria neolatina.</p>
+        
+      </li>
+    
+  </ul>
+</section>
+
+    </main>
+    <footer class="site-footer">
+  <div class="container footer-content">
+    <p><a href="https://diegofierro.github.io/" target="_blank">Diego Fierro</a>&copy; 2026 La Gabbia. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  const html = document.documentElement;
+
+  
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  if (savedTheme === 'light') {
+    html.classList.add('light-theme');
+    icon.textContent = '☀️';
+  } else {
+    icon.textContent = '🌙';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    html.classList.toggle('light-theme');
+    const isLight = html.classList.contains('light-theme');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    icon.textContent = isLight ? '☀️' : '🌙';
+  });
+</script>
+
+</body>
+</html>

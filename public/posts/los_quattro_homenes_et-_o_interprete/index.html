@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> | La Gabbia</title>
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+  <div class="header-inner container">
+    <a class="site-title" href="/">La Gabbia</a>
+    <nav class="site-nav">
+      
+        <a href="/">Inicio</a>
+      
+        <a href="/posts/">Archivo</a>
+      
+        <a href="/about/">Sobre el sitio</a>
+      
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar modo claro/oscuro">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+    <main class="container">
+        
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title"></h1>
+    <div class="post-meta">
+      <time datetime="0001-01-01">01 de Enero, 0001</time>
+      
+      
+    </div>
+  </header>
+  <div class="post-content">
+    
+  </div>
+</article>
+
+    </main>
+    <footer class="site-footer">
+  <div class="container footer-content">
+    <p>&copy; 2026 La Gabbia. Creado por <a href="https://diegofierro.github.io/" target="_blank" rel="noopener noreferrer">Diego Fierro</a>.</p>
+  </div>
+</footer>
+
+<script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  const html = document.documentElement;
+
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  if (savedTheme === 'light') {
+    html.classList.add('light-theme');
+    icon.textContent = '☀️';
+  } else {
+    icon.textContent = '🌙';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    html.classList.toggle('light-theme');
+    const isLight = html.classList.contains('light-theme');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    icon.textContent = isLight ? '☀️' : '🌙';
+  });
+</script>
+
+</body>
+</html>
