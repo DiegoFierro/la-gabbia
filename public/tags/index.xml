@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Tags on La Gabbia</title>
+		<title>Etichettas on La Gabbia</title>
 		<link>http://localhost:1313/tags/</link>
-		<description>Recent content in Tags on La Gabbia</description>
+		<description>Recent content in Etichettas on La Gabbia</description>
 		<generator>Hugo</generator>
 		<language>es-ES</language>
 		
@@ -168,31 +168,10 @@
 				<description></description>
 			</item>
 			<item>
-				<title>Ensajo</title>
-				<link>http://localhost:1313/tags/ensajo/</link>
-				<pubDate>Sun, 02 May 2021 10:15:00 -0300</pubDate>
-				<guid>http://localhost:1313/tags/ensajo/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Manifesto</title>
-				<link>http://localhost:1313/tags/manifesto/</link>
-				<pubDate>Wed, 28 Apr 2021 18:00:00 -0300</pubDate>
-				<guid>http://localhost:1313/tags/manifesto/</guid>
-				<description></description>
-			</item>
-			<item>
 				<title>Violeta Parra</title>
 				<link>http://localhost:1313/tags/violeta-parra/</link>
 				<pubDate>Sun, 25 Apr 2021 15:30:00 -0300</pubDate>
 				<guid>http://localhost:1313/tags/violeta-parra/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Chiste</title>
-				<link>http://localhost:1313/tags/chiste/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/tags/chiste/</guid>
 				<description></description>
 			</item>
 	</channel>
